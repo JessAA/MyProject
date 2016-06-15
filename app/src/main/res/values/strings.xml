@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">HP Book</string>
+    <string name="welcome_splashscreen">BIENVENUE</string>
+    <string name="wifi_connection">Vérifier la connexion Wifi</string>
+    <string name="wifi_check">Vérifier</string>
+    <string name="list_books">La liste des livres de Henri Potier :</string>
+    <string name="add_book">Ajout panier</string>
+    <string name="filter_book">Filtrer</string>
+    <string name="book_price">Prix : %1s €</string>
+    <string name="basket">panier</string>
+    <string name="choose_a_book">Choisir un livre en cochant la case</string>
+    <string name="close">Fermer</string>
+    <string name="n_books">%1S</string>
+    <string name="n_products">%1S produit(s)</string>
+    <string name="total_price">total</string>
+    <string name="economize_prize">Vous économisez %1S</string>
+    <string name="zero">0 €</string>
+    <string name="choose_books">Choisissez un ou des livres.\nAjouter les au panier pour voir vos produits.</string>
+    <string name="validate">Valider mon panier</string>
+    <string name="display_products">• %1S</string>
+    <string name="create_account">Création du compte</string>
+    <string name="firstname">Prénom</string>
+    <string name="lastname">Nom</string>
+    <string name="street">N° et Rue</string>
+    <string name="zip_code">Code postal</string>
+    <string name="city">Ville</string>
+    <string name="mail">Email</string>
+    <string name="button_create">Création</string>
+    <string name="recheck_wifi_connection">Vérifier votre connexion Wifi et réessayer ultérieurement</string>
+    <string name="select_all">Select all</string>
+    <string name="clear_all">Clear all</string>
+</resources>
