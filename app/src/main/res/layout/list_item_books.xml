@@ -44,7 +44,6 @@
         android:layout_marginLeft="40dp"
         android:paddingBottom="20dp"
         android:paddingTop="10dp"
-        android:text="xxx"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="15sp"
         android:textStyle="bold" />

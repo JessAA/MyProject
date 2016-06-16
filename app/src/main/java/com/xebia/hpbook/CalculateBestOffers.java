@@ -131,12 +131,11 @@ public class CalculateBestOffers {
     private float getBestPrice(float totalBooksPrice, float sliceValue) {
         float price = 0f;
         if (totalBooksPrice >= sliceValue) {
-            //
             price = compareOffers(offerPercentageOrMinus(listOffers, totalBooksPrice),
                     offerSlice(listOffers, totalBooksPrice));
 
         } else {
-            //
+
             price = offerPercentageOrMinus(listOffers, totalBooksPrice);
         }
         return price;

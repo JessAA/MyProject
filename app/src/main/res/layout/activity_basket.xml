@@ -91,14 +91,14 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:textStyle="italic"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
 
                 <TextView
-                    android:layout_below="@+id/without_offer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/without_offer"
                     android:text="@string/total_price_with_offer"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -141,29 +141,29 @@
                 android:id="@+id/test_offre1_automatic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:text="@string/test_offre1_automatic" />
+                android:text="@string/test_offre1_automatic"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/test_offre2_automatic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:text="@string/test_offre2_automatic" />
+                android:text="@string/test_offre2_automatic"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/test_offre3_automatic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:text="@string/test_offre3_automatic" />
+                android:text="@string/test_offre3_automatic"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/test_offre3_sliceValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:text="@string/test_offre3_sliceValue" />
+                android:text="@string/test_offre3_sliceValue"
+                android:visibility="gone" />
 
 
         </LinearLayout>
