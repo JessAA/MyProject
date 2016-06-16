@@ -11,8 +11,11 @@ import android.widget.TextView;
 
 import com.xebia.hpbook.R;
 import com.xebia.hpbook.model.Books;
+import com.xebia.hpbook.model.OfferTypes;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * BasketActivity class
@@ -22,12 +25,22 @@ public class BasketActivity extends AppCompatActivity {
     private static final String SELECTED_BOOKS = "SELECTED_BOOKS";
     private static final String BEST_PRICE = "PRICE";
     private static final String TOTAL_PRICE = "TOTAL";
+    /*To manage test automatic */
+    private static final String OFFER_TYPES = "TYPES";
+    private static final String PERCENTAGE_OFFER = "percentage";
+    private static final String MINUS_OFFER = "minus";
+    private static final String SLICE_OFFER = "slice";
 
     private TextView numberOfProducts;
     private TextView totalPrice;
     private TextView economizePrice;
     private Button validate;
     private LinearLayout lLayout;
+    /*To manage test automatic */
+    private TextView offer1;
+    private TextView offer2;
+    private TextView offer3;
+    private TextView sliceValue;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +52,10 @@ public class BasketActivity extends AppCompatActivity {
         economizePrice = (TextView) findViewById(R.id.econmize_price);
         validate = (Button) findViewById(R.id.validate);
         lLayout = (LinearLayout) findViewById(R.id.container);
+        offer1 = (TextView) findViewById(R.id.test_offre1_automatic);
+        offer2 = (TextView) findViewById(R.id.test_offre2_automatic);
+        offer3 = (TextView) findViewById(R.id.test_offre3_automatic);
+        sliceValue = (TextView) findViewById(R.id.test_offre3_sliceValue);
 
         Bundle b = getIntent().getExtras();
         if (b != null) {
@@ -67,6 +84,9 @@ public class BasketActivity extends AppCompatActivity {
         float bestPrice = b.getFloat(BEST_PRICE);
         float totalBookPrice = b.getFloat(TOTAL_PRICE);
         ArrayList<Books> listOfSelectedBooks = (ArrayList<Books>) getIntent().getSerializableExtra(SELECTED_BOOKS);
+        //To manage automatic test
+        ArrayList<OfferTypes> listOfOffers = (ArrayList<OfferTypes>) getIntent().getSerializableExtra(OFFER_TYPES);
+        testOffers(listOfOffers);
 
         for (Books books : listOfSelectedBooks) {
             TextView bookTitle = new TextView(this);
@@ -79,13 +99,9 @@ public class BasketActivity extends AppCompatActivity {
         }
 
         validate.setVisibility(View.VISIBLE);
-        String s = Float.toString(bestPrice);
-        s = s.replace(".", "€");
-        totalPrice.setText(s);
+        totalPrice.setText(getString(R.string.price, round(bestPrice, 2)));
         numberOfProducts.setText(getString(R.string.n_products, listOfSelectedBooks.size()));
-        String sEconomize = Float.toString(getEconomizePrice(totalBookPrice, bestPrice));
-        sEconomize = sEconomize.replace(".", "€");
-        economizePrice.setText(getString(R.string.economize_prize, sEconomize));
+        economizePrice.setText(getString(R.string.economize_prize, getEconomizePrice(totalBookPrice, bestPrice)));
         validate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,8 +112,47 @@ public class BasketActivity extends AppCompatActivity {
 
     }
 
-    private float getEconomizePrice(float totalBookPrice, float bestPrice) {
-        return Math.abs(totalBookPrice - bestPrice) * 100 / 100;
-        //double d = (double) Math.round(tonDouble * 100) / 100;
+    private BigDecimal getEconomizePrice(float totalBookPrice, float bestPrice) {
+        return round((totalBookPrice - bestPrice), 2);
+    }
+
+    private static BigDecimal round(float d, int decimalPlace) {
+
+        BigDecimal bd = new BigDecimal(Float.toString(d));
+        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+        return bd;
+    }
+
+    /**
+     * Test automatic
+     *
+     * @param list
+     */
+    private void testOffers(List<OfferTypes> list) {
+        int offre1Value = 0;
+        int offre2Value = 0;
+        int offre3Value = 0;
+        int slice3Value = 0;
+        for (OfferTypes o : list) {
+
+            if (o.getType().equals(PERCENTAGE_OFFER)) {
+                offre1Value = o.getValue();
+            }
+
+            if (o.getType().equals(MINUS_OFFER)) {
+                offre2Value = o.getValue();
+            }
+
+            if (o.getType().equals(SLICE_OFFER)) {
+                offre3Value = o.getValue();
+                slice3Value = o.getSliceValue();
+            }
+
+
+        }
+        offer1.setText(getString(R.string.test_offre1_automatic, offre1Value));
+        offer2.setText(getString(R.string.test_offre2_automatic, offre2Value));
+        offer3.setText(getString(R.string.test_offre3_automatic, offre3Value));
+        sliceValue.setText(getString(R.string.test_offre3_sliceValue, slice3Value));
     }
 }

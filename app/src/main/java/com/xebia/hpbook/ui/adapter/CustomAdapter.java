@@ -28,12 +28,13 @@ public class CustomAdapter extends BaseAdapter {
 
     Context context;
     List<Books> listBooks;
-    boolean isCheck;
     private static LayoutInflater inflater=null;
-    //Map to cache Image Bitmap. Key= imageUrl,value =Image Bitmap
-    private Map<String, Bitmap> mBitmapCache = new HashMap<>();
 
-
+    /**
+     * Constructor method
+     * @param context
+     * @param books
+     */
     public CustomAdapter(Context context, List<Books> books) {
         this.context = context;
         this.listBooks = books;
@@ -63,7 +64,7 @@ public class CustomAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.list_item_books, null);
             holder.bookTitle = (TextView) convertView.findViewById(R.id.book_title);
             holder.bookPrice = (TextView) convertView.findViewById(R.id.book_price);
-       //     holder.bookCover = (ImageView) convertView.findViewById(R.id.book_image);
+            //holder.bookCover = (ImageView) convertView.findViewById(R.id.book_image);
 
             holder.checkBox = (CheckBox) convertView.findViewById(R.id.check_box);
             holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -93,49 +94,21 @@ public class CustomAdapter extends BaseAdapter {
         /*Picasso.with(context)
                 .load(listBooks.get(position).getCover())
                 .into(holder.bookCover);
-*/
+        */
 
         return convertView;
     }
 
+    /**
+     * Holder class
+     */
     public class Holder
     {
         TextView bookTitle;
         TextView bookPrice;
         ImageView bookCover;
         CheckBox checkBox;
-        String imageUrl;
 
-
-        /*
-        public void setImage(String imageUrl) {
-            this.imageUrl = imageUrl;
-            Bitmap imageBitmap = mBitmapCache.get(imageUrl);
-            if(imageBitmap!=null){
-                bookCover.setImageBitmap(imageBitmap);
-            } else {
-                AsyncHttpClient client = new AsyncHttpClient();
-                client.get(imageUrl, null, fileHandler);
-            }
-        }*/
     }
 
-    public class downloadImage extends AsyncTask<Void, Void, Void> {
-
-        private int posId;
-        private ImageView imgBook;
-
-        public downloadImage(int position, ImageView imageView){
-            this.posId = position;
-            this.imgBook = imageView;
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            Picasso.with(context)
-                    .load(listBooks.get(posId).getCover())
-                    .into(imgBook);
-            return null;
-        }
-    }
 }

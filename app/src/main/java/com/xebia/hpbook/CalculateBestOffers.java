@@ -16,7 +16,6 @@ public class CalculateBestOffers {
     private static final String PERCENTAGE_OFFER = "percentage";
     private static final String MINUS_OFFER = "minus";
     private static final String SLICE_OFFER = "slice";
-    private float bestPrice = 0f;
 
     /**
      * @param selectedBooksList
@@ -28,7 +27,7 @@ public class CalculateBestOffers {
     }
 
     /**
-     * @return
+     * @return the total of the price books selected
      */
     public float calculateTotalPriceOfSelectedBooks() {
         float totalPrice = 0f;
@@ -40,7 +39,7 @@ public class CalculateBestOffers {
     }
 
     /**
-     * @return
+     * @return the best offer price value
      */
     public float getBestOffer() {
         float totalBooksPrice = calculateTotalPriceOfSelectedBooks();
@@ -48,12 +47,17 @@ public class CalculateBestOffers {
             sliceValue = getSliceValue(listOffers);
             return getBestPrice(totalBooksPrice, sliceValue);
         } else {
-            //    reduceBookPrice = offerPercentageOrMinus(listOffers, totalBooksPrice);
             return offerPercentageOrMinus(listOffers, totalBooksPrice);
 
         }
     }
 
+    /**
+     * return the best offer price between (Percentage and minus offers)
+     * @param list
+     * @param totalBooksPrice
+     * @return the best price between percentage offer and minus offer
+     */
     private float offerPercentageOrMinus(List<OfferTypes> list, float totalBooksPrice) {
         float percentagePrice = 0f;
         float minusPrice = 0f;
@@ -71,20 +75,22 @@ public class CalculateBestOffers {
 
             }
 
-            return bestPrice = compareOffers(percentagePrice, minusPrice);
+            return compareOffers(percentagePrice, minusPrice);
 
         } else {
-           /* float test1 = (totalBooksPrice * list.get(0).getValue()) / 100.0f;
-            float test3 =  Math.abs(((totalBooksPrice * list.get(0).getValue()) / 100.0f) * 100) / 100;
-            float test2 =  Math.round(((totalBooksPrice * list.get(0).getValue()) / 100.0f) * 1000) / 1000;
-            float test = Math.round(((totalBooksPrice * list.get(0).getValue()) / 100.0f) * 10) / 10;*/
-            percentagePrice = totalBooksPrice -
+           percentagePrice = totalBooksPrice -
                     (totalBooksPrice * list.get(0).getValue()) / 100.0f;
             return percentagePrice;
         }
 
     }
 
+    /**
+     * get the price of the offer type -> slice
+     * @param list
+     * @param totalBooksPrice
+     * @return the price of slice Offer
+     */
     private float offerSlice(List<OfferTypes> list, float totalBooksPrice) {
         float slicePrice = 0f;
         for (OfferTypes offerTypes :
@@ -97,6 +103,12 @@ public class CalculateBestOffers {
         return slicePrice;
     }
 
+    /**
+     * compares the prices between two offers
+     * @param percentagePrice
+     * @param minusPrice
+     * @return the lowest best price
+     */
     private float compareOffers(float percentagePrice, float minusPrice) {
         if (percentagePrice < minusPrice) {
             return percentagePrice;
@@ -105,6 +117,12 @@ public class CalculateBestOffers {
         }
     }
 
+    /**
+     * get the best price between all the offers
+     * @param totalBooksPrice
+     * @param sliceValue
+     * @return the best price
+     */
     private float getBestPrice(float totalBooksPrice, float sliceValue) {
         float price = 0f;
         if (totalBooksPrice >= sliceValue) {
@@ -119,6 +137,11 @@ public class CalculateBestOffers {
         return price;
     }
 
+    /**
+     * To get the slice value of the 3rd offer (slice offer)
+     * @param listOffers
+     * @return slice value
+     */
     private float getSliceValue(List<OfferTypes> listOffers) {
         for (OfferTypes o :
                 listOffers) {

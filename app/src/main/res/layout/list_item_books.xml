@@ -8,8 +8,8 @@
         android:id="@+id/item_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <CheckBox
@@ -24,14 +24,6 @@
             android:layout_marginLeft="7dp"
             android:textColor="@android:color/black"
             android:textSize="15sp" />
-        <!--
-
-        <ImageView
-            android:id="@+id/book_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
--->
-
 
     </LinearLayout>
 

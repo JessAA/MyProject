@@ -22,6 +22,9 @@ public class BookAlertDialog {
 
     }
 
+    /**
+     * Show an alert dialog about network connection
+     */
     public void showConnectionDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder
@@ -40,6 +43,9 @@ public class BookAlertDialog {
         alertDialog.show();
     }
 
+    /**
+     * show an alert dialog about books that needs to be selected
+     */
     public void showSelectBookDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder

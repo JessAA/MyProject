@@ -33,6 +33,7 @@ import com.xebia.hpbook.utils.BookAlertDialog;
 import com.xebia.hpbook.utils.ConnectivityUtils;
 import com.xebia.hpbook.utils.ErrorUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +49,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     private static final String SELECTED_BOOKS = "SELECTED_BOOKS";
     private static final String BEST_PRICE = "PRICE";
     private static final String TOTAL_PRICE = "TOTAL";
+    private static final String OFFER_TYPES = "TYPES";
     private List<Books> listOfBooks = new ArrayList<>();
     private List<OfferTypes> listOffers = new ArrayList<>();
     private List<String> listISBN;
@@ -57,10 +59,8 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     private LinearLayout linearLayout;
     private int numberOfBooksSelected = 0;
     private TextView tv;
-    private View headerListView;
     private BookAlertDialog dialog;
     private CheckBox selectAll;
-    private CheckBox clearAll;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,23 +68,8 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_home);
         listView = (ListView) findViewById(R.id.list_books);
         linearLayout = (LinearLayout) findViewById(R.id.loading_list);
-        //headerListView = getLayoutInflater().inflate(R.layout.item_header, null);
-        //listView.addHeaderView(headerListView);
         selectAll = (CheckBox) findViewById(R.id.select_all);
-        //clearAll = (CheckBox) findViewById(R.id.clear_all);
         dialog = new BookAlertDialog(this);
-
-
-
-        /*
-        *
-View footer = getLayoutInflater().inflate(R.layout.footer, null);
-
-ListView listView = getListView();
-
-listView.addHeaderView(header);
-listView.addFooterView(footer);
-        * */
 
         final ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
@@ -286,6 +271,7 @@ listView.addFooterView(footer);
         b.putFloat(TOTAL_PRICE, totalPrice);
         intent.putExtras(b);
         intent.putExtra(SELECTED_BOOKS, selectedBooksList);
+        intent.putExtra(OFFER_TYPES, (Serializable) listOffers);
         startActivity(intent);
 
     }

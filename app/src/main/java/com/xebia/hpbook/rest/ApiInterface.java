@@ -16,9 +16,9 @@ public interface ApiInterface {
 
 
     @GET("/books")
-    Call<List<Books>> getBooksList();//
+    Call<List<Books>> getBooksList();// to get the list of books
 
     @GET("/books/{isbn}/commercialOffers")
-    Call<Offers> getBestOffers(@Path("isbn") String param);
+    Call<Offers> getBestOffers(@Path("isbn") String param);// to get the offer types
 
 }

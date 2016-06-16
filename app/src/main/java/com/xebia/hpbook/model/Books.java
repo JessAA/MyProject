@@ -1,7 +1,5 @@
 package com.xebia.hpbook.model;
 
-import android.os.Parcel;
-
 import java.io.Serializable;
 
 /**
@@ -17,91 +15,44 @@ public class Books implements Serializable {
     private boolean isSelected;
 
     /**
-     *
+     * Constructor method
      */
     public Books() {
 
     }
 
     /**
-     * @param isbn
-     * @param title
-     * @param cover
-     * @param price
-     */
-    public Books(String isbn, String title, String cover, int price) {
-        this.isbn = isbn;
-        this.title = title;
-        this.cover = cover;
-        this.price = price;
-    }
-
-    protected Books(Parcel in) {
-        isbn = in.readString();
-        title = in.readString();
-        cover = in.readString();
-        price = in.readInt();
-        isSelected = in.readByte() != 0;
-    }
-
-    /**
-     * @return
+     * @return the isbn of a book, example : {c8fabf68-8374-48fe-a7ea-a00ccd07afff}
      */
     public String getIsbn() {
         return isbn;
     }
 
     /**
-     * @param isbn
-     */
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    /**
-     * @return
+     * @return the title of a book, example : {Henri Potier à l'école des sorciers}
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * @param title
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
-     * @return
+     * @return the url image of a book, example : {http://henri-potier.xebia.fr/hp0.jpg}
      */
     public String getCover() {
         return cover;
     }
 
     /**
-     * @param cover
-     */
-    public void setCover(String cover) {
-        this.cover = cover;
-    }
-
-    /**
-     * @return
+     * @return the price of a book
      */
     public int getPrice() {
         return price;
     }
 
     /**
-     * @param price
-     */
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    /**
-     * @return
+     * @return {true or false}
+     * if true -> checkbox is checked
+     * if false -> checkbox is unchecked
      */
     public boolean isSelected() {
         return isSelected;

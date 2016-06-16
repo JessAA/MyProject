@@ -10,12 +10,6 @@ public class Offers {
     private List<OfferTypes> offers;
 
     /**
-     *
-     */
-    public Offers() {
-    }
-
-    /**
      * @param offers
      */
     public Offers(List<OfferTypes> offers) {
@@ -23,17 +17,10 @@ public class Offers {
     }
 
     /**
-     * @return
+     * @return list of offers type
      */
     public List<OfferTypes> getOffers() {
         return offers;
-    }
-
-    /**
-     * @param offers
-     */
-    public void setOffers(List<OfferTypes> offers) {
-        this.offers = offers;
     }
 
 }

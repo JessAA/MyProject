@@ -42,33 +42,6 @@ public class CreateAccountFragment extends Fragment {
         mail = (EditText) view.findViewById(R.id.mail);
 
 
-        firstname.addTextChangedListener(new CustomTextWatcher(firstname));
-        lastname.addTextChangedListener(new CustomTextWatcher(lastname));
-        street.addTextChangedListener(new CustomTextWatcher(street));
-        zipCode.addTextChangedListener(new CustomTextWatcher(zipCode));
-        city.addTextChangedListener(new CustomTextWatcher(city));
-        mail.addTextChangedListener(new CustomTextWatcher(mail));
-
-    }
-
-    private class CustomTextWatcher implements TextWatcher {
-        private EditText mEditText;
-
-        public CustomTextWatcher(EditText e) {
-            mEditText = e;
-        }
-
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            mEditText.setHint(" ");
-
-        }
-
-        public void afterTextChanged(Editable s) {
-        }
     }
 
 }
