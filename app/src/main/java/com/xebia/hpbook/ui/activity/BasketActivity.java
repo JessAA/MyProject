@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.xebia.hpbook.CalculateBestOffers;
 import com.xebia.hpbook.R;
 import com.xebia.hpbook.model.Books;
 import com.xebia.hpbook.model.OfferTypes;
@@ -24,6 +25,7 @@ public class BasketActivity extends AppCompatActivity {
 
     private static final String SELECTED_BOOKS = "SELECTED_BOOKS";
     private static final String BEST_PRICE = "PRICE";
+    private static final String NUMBER_BOOKS = "NUMBER";
     private static final String TOTAL_PRICE = "TOTAL";
     /*To manage test automatic */
     private static final String OFFER_TYPES = "TYPES";
@@ -32,7 +34,8 @@ public class BasketActivity extends AppCompatActivity {
     private static final String SLICE_OFFER = "slice";
 
     private TextView numberOfProducts;
-    private TextView totalPrice;
+    private TextView totalPriceWithOffer;
+    private TextView totalPriceWithoutOffer;
     private TextView economizePrice;
     private Button validate;
     private LinearLayout lLayout;
@@ -48,7 +51,8 @@ public class BasketActivity extends AppCompatActivity {
         setContentView(R.layout.activity_basket);
 
         numberOfProducts = (TextView) findViewById(R.id.products);
-        totalPrice = (TextView) findViewById(R.id.total_price);
+        totalPriceWithOffer = (TextView) findViewById(R.id.total_price_withOffer);
+        totalPriceWithoutOffer = (TextView)findViewById(R.id.total_price_withoutOffer);
         economizePrice = (TextView) findViewById(R.id.econmize_price);
         validate = (Button) findViewById(R.id.validate);
         lLayout = (LinearLayout) findViewById(R.id.container);
@@ -71,7 +75,8 @@ public class BasketActivity extends AppCompatActivity {
     }
 
     private void initializeBasketWithNoProducts() {
-        totalPrice.setText(getString(R.string.zero));
+        totalPriceWithOffer.setText(getString(R.string.zero));
+        totalPriceWithoutOffer.setText(getString(R.string.zero));
         numberOfProducts.setText(getString(R.string.choose_books));
         economizePrice.setText(getString(R.string.economize_prize, 0));
         lLayout.setVisibility(View.GONE);
@@ -81,26 +86,34 @@ public class BasketActivity extends AppCompatActivity {
     private void initializeBasketWithNProducts(Bundle b) {
         lLayout.setVisibility(View.VISIBLE);
 
+        totalPriceWithoutOffer.setVisibility(View.VISIBLE);
+
         float bestPrice = b.getFloat(BEST_PRICE);
         float totalBookPrice = b.getFloat(TOTAL_PRICE);
+        int totalNumberProducts = b.getInt(NUMBER_BOOKS);
         ArrayList<Books> listOfSelectedBooks = (ArrayList<Books>) getIntent().getSerializableExtra(SELECTED_BOOKS);
         //To manage automatic test
         ArrayList<OfferTypes> listOfOffers = (ArrayList<OfferTypes>) getIntent().getSerializableExtra(OFFER_TYPES);
-        testOffers(listOfOffers);
+        //testOffers(listOfOffers);
+
+        CalculateBestOffers c = new CalculateBestOffers(listOfSelectedBooks, listOfOffers);
+        float priceWithoutOffer = c.calculateTotalPriceOfSelectedBooks();
+        totalPriceWithoutOffer.setText(getString(R.string.price, round(priceWithoutOffer, 2)));
 
         for (Books books : listOfSelectedBooks) {
             TextView bookTitle = new TextView(this);
             TextView bookPrice = new TextView(this);
             bookPrice.setPadding(10, 0, 0, 0);
-            bookTitle.setText(getString(R.string.display_products, books.getTitle()));
+            bookTitle.setText(getString(R.string.display_products, books.getQuantity(),
+                    books.getQuantity())+ books.getTitle());
             bookPrice.setText(getString(R.string.book_price, books.getPrice()));
             lLayout.addView(bookTitle);
             lLayout.addView(bookPrice);
         }
 
         validate.setVisibility(View.VISIBLE);
-        totalPrice.setText(getString(R.string.price, round(bestPrice, 2)));
-        numberOfProducts.setText(getString(R.string.n_products, listOfSelectedBooks.size()));
+        totalPriceWithOffer.setText(getString(R.string.price, round(bestPrice, 2)));
+        numberOfProducts.setText(getString(R.string.n_products, totalNumberProducts));
         economizePrice.setText(getString(R.string.economize_prize, getEconomizePrice(totalBookPrice, bestPrice)));
         validate.setOnClickListener(new View.OnClickListener() {
             @Override

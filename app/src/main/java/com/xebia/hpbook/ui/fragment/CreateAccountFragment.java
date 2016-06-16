@@ -2,8 +2,6 @@ package com.xebia.hpbook.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +27,6 @@ public class CreateAccountFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_create_account, container, false);
     }
 
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -40,7 +37,6 @@ public class CreateAccountFragment extends Fragment {
         zipCode = (EditText) view.findViewById(R.id.zip_code);
         city = (EditText) view.findViewById(R.id.city);
         mail = (EditText) view.findViewById(R.id.mail);
-
 
     }
 

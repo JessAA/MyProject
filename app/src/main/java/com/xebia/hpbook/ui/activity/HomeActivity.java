@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -44,12 +43,13 @@ import retrofit2.Response;
 /**
  * HomeActivity class
  */
-public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class HomeActivity extends AppCompatActivity {
 
     private static final String SELECTED_BOOKS = "SELECTED_BOOKS";
     private static final String BEST_PRICE = "PRICE";
     private static final String TOTAL_PRICE = "TOTAL";
     private static final String OFFER_TYPES = "TYPES";
+    private static final String NUMBER_BOOKS = "NUMBER";
     private List<Books> listOfBooks = new ArrayList<>();
     private List<OfferTypes> listOffers = new ArrayList<>();
     private List<String> listISBN;
@@ -82,12 +82,19 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                 selectedBooksList = new ArrayList<>();
                 numberOfBooksSelected = 0;
                 for (Books b : listOfBooks) {
-
-
                     if (b.isSelected()) {
-                        listISBN.add(b.getIsbn());
+                        //Manage quantity
+                        if(b.getQuantity() > 1){
+                            for(int i = 0; i < b.getQuantity(); i++ ){
+                                listISBN.add(b.getIsbn());
+                            }
+                        }else{
+                            listISBN.add(b.getIsbn());
+                        }
+
                         selectedBooksList.add(b);
-                        numberOfBooksSelected++;
+
+                        numberOfBooksSelected = numberOfBooksSelected + b.getQuantity();
                     }
                 }
                 tv.setText(getString(R.string.n_books, numberOfBooksSelected));
@@ -107,8 +114,6 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             }
 
         });
-
-
     }
 
     @Override
@@ -149,23 +154,6 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onResume();
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        TextView bookTitle = (TextView) view.getTag(R.id.book_title);
-        CheckBox checkbox = (CheckBox) view.getTag(R.id.check_box);
-        Log.d(bookTitle + " is ", "checked? " + isCheckedOrNot(checkbox));
-    }
-
-    private String isCheckedOrNot(CheckBox checkbox) {
-        if (checkbox.isChecked()) {
-            return "is checked";
-        } else {
-            return "is not checked";
-        }
-
-    }
-
-
     private class GetBooksList extends AsyncTask<Void, Void, Void> {
 
         private ApiInterface apiService;
@@ -187,16 +175,16 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                         linearLayout.setVisibility(View.GONE);
                         Log.d("Success ", "request");
                         response.body().get(0);
-                        Log.d("Response object 1>>>", "" + response.body().get(0));
                         listOfBooks = response.body();
+                        for(Books b : listOfBooks){
+                            b.setQuantity(1);
+                        }
                         listView.setAdapter(new CustomAdapter(getApplicationContext(), listOfBooks));
                         return;
                     } else {
                         APIError error = ErrorUtils.parseError(response);
                         Log.d("error message", error.message());
                     }
-
-
                 }
 
                 @Override
@@ -237,7 +225,6 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                         CalculateBestOffers calculateBestOffers = new CalculateBestOffers(selectedBooksList, listOffers);
                         float bestPrice = calculateBestOffers.getBestOffer();
                         float totalPrice = calculateBestOffers.calculateTotalPriceOfSelectedBooks();
-                        Log.d("Best ", "Offer >>>" + bestPrice);
                         goToBasketActivity(bestPrice, totalPrice);
                         return;
                     } else {
@@ -269,6 +256,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         Bundle b = new Bundle();
         b.putFloat(BEST_PRICE, bestPrice);
         b.putFloat(TOTAL_PRICE, totalPrice);
+        b.putInt(NUMBER_BOOKS,numberOfBooksSelected);
         intent.putExtras(b);
         intent.putExtra(SELECTED_BOOKS, selectedBooksList);
         intent.putExtra(OFFER_TYPES, (Serializable) listOffers);

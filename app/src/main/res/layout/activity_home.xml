@@ -10,11 +10,11 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/list_books"
-        android:textStyle="bold"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
-        android:textSize="20sp"/>
+        android:text="@string/list_books"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <CheckBox
         android:id="@+id/select_all"
@@ -23,12 +23,13 @@
         android:layout_below="@+id/title"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
-        android:text="@string/select_all"/>
+        android:text="@string/select_all" />
 
     <View
-        android:layout_below="@+id/select_all"
+        android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="5px"
+        android:layout_below="@+id/select_all"
         android:background="@android:color/darker_gray" />
 
     <LinearLayout
@@ -47,14 +48,13 @@
     </LinearLayout>
 
 
-
     <ListView
         android:id="@+id/list_books"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="65dp"
+        android:layout_below="@+id/separator"
+        android:layout_marginBottom="45dp"
         android:layout_marginRight="-5dp"
-        android:layout_below="@+id/select_all"
         android:dividerHeight="5px" />
 
     <LinearLayout

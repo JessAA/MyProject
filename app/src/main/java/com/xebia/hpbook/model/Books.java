@@ -13,6 +13,7 @@ public class Books implements Serializable {
     private String cover;
     private int price;
     private boolean isSelected;
+    private int quantity;
 
     /**
      * Constructor method
@@ -65,6 +66,22 @@ public class Books implements Serializable {
         isSelected = selected;
     }
 
+    /**
+     *
+     * @return quantity of a book selected
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     *
+     * @param quantity defined by the user
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
         return "Books{" +
@@ -73,6 +90,7 @@ public class Books implements Serializable {
                 ", cover='" + cover + '\'' +
                 ", price=" + price +
                 ", isSelected=" + isSelected +
+                ", quantity=" + quantity +
                 '}';
     }
 

@@ -78,19 +78,38 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
+                    android:id="@+id/without_offer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/total_price"
-                    android:textAllCaps="true"
+                    android:text="@string/total_price_without_offer"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/total_price"
+                    android:id="@+id/total_price_withoutOffer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
+                    android:textStyle="italic"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_below="@+id/without_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_price_with_offer"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/total_price_withOffer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/total_price_withoutOffer"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
 
@@ -100,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_below="@+id/total_price"
+                    android:layout_below="@+id/total_price_withOffer"
                     android:text="@string/economize_prize"
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="15sp" />
@@ -117,29 +136,33 @@
                 android:text="@string/validate"
                 android:textSize="20sp"
                 android:visibility="gone" />
-
+            <!--Automatic test-->
             <TextView
                 android:id="@+id/test_offre1_automatic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:text="@string/test_offre1_automatic" />
 
             <TextView
                 android:id="@+id/test_offre2_automatic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:text="@string/test_offre2_automatic" />
 
             <TextView
                 android:id="@+id/test_offre3_automatic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:text="@string/test_offre3_automatic" />
 
             <TextView
                 android:id="@+id/test_offre3_sliceValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:text="@string/test_offre3_sliceValue" />
 
 

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">HP Book</string>
-    <string name="welcome_splashscreen">BIENVENUE</string>
+    <string name="welcome_splashscreen">BIENVENUE\n~ HP Book ~</string>
     <string name="wifi_connection">Vérifier la connexion Wifi</string>
     <string name="wifi_check">Vérifier</string>
     <string name="list_books">La liste des livres de Henri Potier :</string>
@@ -13,12 +13,13 @@
     <string name="n_books">%1S</string>
     <string name="price">%1S</string>
     <string name="n_products">%1S produit(s)</string>
-    <string name="total_price">total (€)</string>
+    <string name="total_price_without_offer">TOTAL sans offres(€)</string>
+    <string name="total_price_with_offer">TOTAL avec offres(€)</string>
     <string name="economize_prize">Vous économisez %1S</string>
-    <string name="zero">0 €</string>
+    <string name="zero">0</string>
     <string name="choose_books">Choisissez un ou des livres.\nAjouter les au panier pour voir vos produits.</string>
     <string name="validate">Valider mon panier</string>
-    <string name="display_products">• %1S</string>
+    <string name="display_products">• %1S livre(s) : </string>
     <string name="create_account">Création du compte</string>
     <string name="firstname">Prénom</string>
     <string name="lastname">Nom</string>
@@ -28,10 +29,17 @@
     <string name="mail">Email</string>
     <string name="button_create">Création</string>
     <string name="recheck_wifi_connection">Vérifier votre connexion Wifi et réessayer ultérieurement</string>
-    <string name="select_all">Select all</string>
+    <string name="select_all">Sélectionner tout</string>
     <string name="clear_all">Clear all</string>
+    <string name="quantity">Quantité : </string>
     <string name="test_offre1_automatic">offre percentage value : %1s</string>
     <string name="test_offre2_automatic">offre minus value : %1s</string>
     <string name="test_offre3_automatic">offre slice value : %1s</string>
     <string name="test_offre3_sliceValue"> slice value : %1s</string>
+    <string name="quantity_value">1</string>
+    <string name="add_quantity">+</string>
+    <string name="minus_quantity">—</string>
+    <string name="n_quantity">%1s</string>
+    <string name="quantity_limitation">La quantité est limitée à 5</string>
+    <string name="Confirm">OK</string>
 </resources>

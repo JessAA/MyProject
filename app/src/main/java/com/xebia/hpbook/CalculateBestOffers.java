@@ -32,7 +32,12 @@ public class CalculateBestOffers {
     public float calculateTotalPriceOfSelectedBooks() {
         float totalPrice = 0f;
         for (Books b : listBooks) {
-            totalPrice += b.getPrice();
+            if(b.getQuantity() > 1){
+
+                totalPrice += b.getQuantity() * b.getPrice();
+            }else{
+                totalPrice += b.getPrice();
+            }
         }
 
         return totalPrice;
