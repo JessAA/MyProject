@@ -1,6 +1,6 @@
 pipeline {
 
-    agent any
+    agent { docker 'maven:3.3.3' }
 
     stages {
         stage('build') {
@@ -17,7 +17,7 @@ pipeline {
 
         stage('Test'){
             steps {
-                sh 'echo "TESTING"
+                sh 'echo "TESTING"'
             }
         }
     }
