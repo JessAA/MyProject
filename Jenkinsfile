@@ -6,7 +6,11 @@ pipeline {
         stage('build') {
             steps {
                 sh 'echo "Building"'
-                return
+                 sh '''
+                                    echo "Multiline shell steps works too"
+                                    lh
+                                    blabla
+                                '''
             }
         }
 
