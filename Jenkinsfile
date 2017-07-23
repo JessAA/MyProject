@@ -3,5 +3,5 @@ stage('Test') {
 }
 
 stage('End') {
-    echo Next demo will be about Blue ocean plugin'
+    echo 'Next demo will be about Blue ocean plugin'
 }
