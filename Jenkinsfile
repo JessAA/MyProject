@@ -11,10 +11,10 @@ pipeline { 
  }  
 
  parallel( 
-    stage('deploy') { 
+    stage('deploy-staging') { 
         echo 'Deploy in staging' 
     },  
-    stage('deploy') { 
+    stage('deploy-production') { 
         echo 'DEPLOY in production' 
     }
   )
