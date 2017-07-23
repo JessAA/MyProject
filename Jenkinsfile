@@ -14,10 +14,18 @@ node {
 
     }
 
+    parallel(
     stage('deploy') {
+                //
+                emailext body: 'test', subject: 'test', to: 'jessica.alaraye@viseo.com'
 
-            emailext body: 'test', subject: 'test', to: 'jessica.alaraye@viseo.com'
+        },
 
-    }
+        stage('deploy') {
+                        //
+                        echo 'DEPLOYING'
+
+                }
+    )
 
 }
