@@ -1,2 +1,1 @@
-mail bcc: 'jessica.alaraye@viseo.com', body: 'Generate a script for pipeline on the master branch ', cc: '', from: '',
-replyTo: '', subject: 'Jenkins pipeline', to: 'jessica.alaraye@viseo.com'
+emailext body: 'Generate a script for master branch', subject: 'Jenkins pipeline', to: 'jessica.alaraye@viseo.com'
