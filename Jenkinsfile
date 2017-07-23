@@ -8,6 +8,7 @@ pipeline {
 
                 sh 'pwd'
                 sh 'echo $PATH'
+                gradle clean
                 sh 'echo "Building"'
             }
         }
