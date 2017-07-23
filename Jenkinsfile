@@ -7,7 +7,7 @@ pipeline {
             steps {
 
                 sh 'pwd'
-                echo '$PATH'
+                sh 'echo $PATH'
                 sh 'echo "Building"'
             }
         }
