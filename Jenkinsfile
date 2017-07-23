@@ -8,7 +8,7 @@ pipeline {
 
                 sh 'pwd'
                 sh 'echo $PATH'
-                sh 'ls -l | grep gradle'
+                sh 'ls -l'
                 sh 'gradle clean --info'
                 sh 'echo "Building"'
             }
