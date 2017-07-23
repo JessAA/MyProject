@@ -7,7 +7,8 @@ pipeline {
             steps {
 
                 sh 'pwd'
-                sh 'gradle build'
+                ArtifactoryGradleBuild buildFile: 'build.gradle', rootDir: '', switches: '', tasks: 'artifactoryPublish', tool: '', useWrapper: false, usesPlugin: false
+
                 sh 'echo "Building"'
             }
         }
