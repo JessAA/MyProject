@@ -1,9 +1,22 @@
 
-    stage('To be continued') {
-        echo 'Next demo i will present the Blue Ocean plugin'
+    stage('build') {
+        sh './gradlew clean'
+        sh './gradlew build'
+
     }
 
-    stage('test'){
-        echo 'Hello world'
+    stage('test') {
+        sh './gradlew check'
     }
+
+    post {
+            always {
+                junit 'build/reports/**/*.xml'
+            }
+        }
+
+    stage('deploy') {
+        emailext body: 'test', subject: 'test', to: 'jessica.alaraye@viseo.com'
+    }
+
 
