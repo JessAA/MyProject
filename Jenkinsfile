@@ -2,14 +2,14 @@ node {
     stage('build') {
 
             //sh './gradlew clean'
-            //sh './gradlew build'
+            sh './gradlew build'
             echo 'BUILDING'
 
     }
 
     stage('test') {
 
-            //sh './gradlew check'
+            sh './gradlew check'
             echo 'TESTING'
 
     }
