@@ -26,6 +26,7 @@ pipeline {
                 parallel(
                         one: {
                             echo "I'm on the first branch!"
+                            sh 'll'
                         },
                         two: {
                             echo "I'm on the second branch!"
