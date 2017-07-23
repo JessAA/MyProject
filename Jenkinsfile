@@ -5,11 +5,11 @@
 
  stage('test') { 
  echo 'TESTING'     }  
- parallel( stage('deploy1') { 
+ parallel( stage('deploy') { 
 
  echo 'Deploy in staging' 
  },  
- stage('deploy2') { 
+ stage('deploy') { 
     echo 'DEPLOY in production' 
  } 
 )
