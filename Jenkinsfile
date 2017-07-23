@@ -1,16 +1,14 @@
 
-    stage('build') { 
+stage('build') { 
 
- echo 'BUILDING'     }  
+     echo 'BUILDING' 
+ }  
 
  stage('test') { 
- echo 'TESTING'     }  
- parallel( stage('deploy') { 
-
- echo 'Deploy in staging' 
- },  
- stage('deploy') { 
-    echo 'DEPLOY in production' 
- } 
+    echo 'TESTING' 
+ }  
+ parallel(
+    "deploy1":  {echo 'Deploy in staging' },
+        "deploy2":  {echo 'Deploy in production' }
 )
 
