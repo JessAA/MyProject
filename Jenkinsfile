@@ -1,6 +1,13 @@
 pipeline {
     agent any
     stages {
+        stage('first stage'){
+            echo "First stage"
+        }
+
+        stage('second stage'){
+            echo "Second stage"
+        }
         stage('third stage') {
             steps {
                 // Note that parallel can only be used as the only step for a stage.
@@ -10,9 +17,10 @@ pipeline {
                 // to see anything from the parallel workspaces.
                 // This'll be improved by https://issues.jenkins-ci.org/browse/JENKINS-41334,
                 // which adds Declarative-specific syntax for parallel stage execution.
-                parallel(one: {
-                    echo "I'm on the first branch!"
-                },
+                parallel(
+                        one: {
+                            echo "I'm on the first branch!"
+                        },
                         two: {
                             echo "I'm on the second branch!"
                         },
