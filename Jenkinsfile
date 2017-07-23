@@ -1,5 +1,4 @@
-pipeline { 
- agent any
+
  stage('build') { 
     echo 'BUILDING' 
  }  
@@ -32,6 +31,3 @@ pipeline { 
                     })
         }
     }
-
-
-  }
