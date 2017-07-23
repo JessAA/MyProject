@@ -1,23 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('build') {
-             
-
-            echo 'BUILDING'  
-
-        }   
-
-        stage('test') {
-             
-
-
-            echo 'TESTING'  
-
-
-        }   
-
-
         stage('third stage') {
             steps {
                 // Note that parallel can only be used as the only step for a stage.
