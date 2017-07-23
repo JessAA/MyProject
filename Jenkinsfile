@@ -7,7 +7,7 @@ pipeline {
             steps {
 
                 sh 'pwd'
-                sh 'gradlew build'
+                sh 'gradle build'
                 sh 'echo "Building"'
             }
         }
