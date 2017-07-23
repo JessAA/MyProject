@@ -1,1 +1,3 @@
-emailext body: 'Generate a script for master branch', subject: 'Jenkins pipeline', to: 'jessica.alaraye@viseo.com'
+stage('Test') {
+    echo 'Hello world'
+}
