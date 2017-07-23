@@ -5,7 +5,9 @@ pipeline {
     stages {
         stage('build') {
             steps {
+
                 sh 'pwd'
+                sh './gradlew build'
                 sh 'echo "Building"'
             }
         }
