@@ -1,4 +1,3 @@
-node { 
 
     stage('build') { 
 
@@ -11,8 +10,7 @@ node { 
  echo 'Deploy in staging' 
  },  
  stage('deploy2') { 
- echo 'DEPLOY in production' 
+    echo 'DEPLOY in production' 
  } 
 )
 
-  }
